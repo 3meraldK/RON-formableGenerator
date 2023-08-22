@@ -1,16 +1,17 @@
 body {
 	background-color: #36414d;
+	color: white;
 }
 a {
 	font-weight: bold;
-	background-color: #4d555c;
+	background-color: #3e4f5f;
 	text-decoration: none;
 }
 a:link {
-	color: #055205;
+	color: #005aad;
 }
 a:visited {
-	color: #3d853d;
+	color: #006ed4;
 }
 
 span {
@@ -39,16 +40,12 @@ span {
 
 #main-content {
 	margin: auto;
-	width: 90%;
-	height: 900px;
-	background-color: #313b46;
+	max-width: 800px;
 }
 
 #footer {
-	margin: auto;
 	margin-top: 5px;
-	width: 90%;
-	height: 35px;
+	line-height: 30px;
 	background-color: #2c353d;
 	font-size: 20px;
 	font-family: 'Roboto Mono', monospace;
@@ -57,60 +54,50 @@ span {
 
 #page-content {
 	background-color: #2c353d;
-	width: 90%;
-	height: 700px;
-	margin: auto;
+	height: 780px;
 }
 
 /* HEADER */
 
 #header {
-	margin: auto;
-	width: 90%;
-	height: 150px;
 	background-color: #2c353d;
+	line-height: 100px;
 }
 
 #logo {
-	margin: auto;
 	text-align: center;
-	width: 50%;
-	color: white;
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: clamp(24px, 4vw, 48px);
+	font-size: clamp(12px, 4.2vw, 48px);
 }
 
 /* INPUT */
 
 #input-content {
-	width: 90%;
-	height: 500px;
-	margin: auto;
+	top: 10px;
+	position: relative;
 }
 
 .input-name {
-	text-align: left;
-	width: 250px;
-	padding: 10px;
-	font-size: 16px;
-	font-family: 'Roboto Mono', monospace;
-	font-weight: bold;
-	color: white;
+    padding: 10px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
 }
 
 .input-label {
 	border-radius: 25px;
 	margin: auto;
-	margin-top: 5px;
+	margin-top: 10px;
 	background-color: #3e4f5f;
-	width: 40%;
-	min-width: 300px;
+	max-width: calc(100% - 75px);
 	height: 40px;
 }
 
 .input {
-	width: 33%;
-	max-width: 300px;
+	width: calc(100% - 260px);
 	height: 25px;
 	margin-top: -35px;
 	margin-right: 5px;
@@ -130,8 +117,9 @@ span {
 	width: 90%;
 	height: 150px;
 	margin: auto;
+	top: 20px;
 	font-family: 'Roboto Mono', monospace;
-	color: white;
+	position: relative;
 }
 
 #output-text {
@@ -141,27 +129,17 @@ span {
 #copy-output {
 	background-color: #1a1e24;
 	width: 200px;
-	height: 50px;
 	border-radius: 25px;
 	font-family: 'Source Sans Pro', sans-serif;
-	color: white;
 	text-align: center;
-	font-size: 16px;
+	position: sticky;
+	top: 25px;
 	float: right;
-	margin-right: 25px;
-	margin-top: 25px;
-    visibility: hidden;
-}
-
-#copy-output-label {
-    vertical-align: middle;
+    margin-right: 25px;
+	transition: background-color 0.5s;
 }
 
 #copy-output:hover {
 	background-color: #2c3138;
 	cursor: pointer;
-}
-
-#copy-output:active {
-	background-color: #3b4d66;
 }
