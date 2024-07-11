@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<title>Rise of Nations Formable Generator</title>
 
-		<link rel="stylesheet" href="styles.css">
+		<link rel="stylesheet" href="style.css">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&family=Source+Sans+Pro&display=swap" rel="stylesheet">
 		<link rel="icon" type="image/png" href="favicon.ico"/>
@@ -16,6 +16,7 @@
 
 			<div id="header">
 				<div id="logo">Rise of Nations Formable Generator</div>
+				<p id="disclaimer">Can be used interchangeably with mission forms</p>
 			</div>
 
 			<div id="page-content">
@@ -40,10 +41,12 @@
 						<input placeholder="The Southern Germans have always been alienated from..." id="alert-desc" class="input"></div>
 					<div class="input-label"><div class="input-name">ALERT BUTTON TEXT</div>
 						<input placeholder="How many German confederations do we need?!" id="alert-button" class="input"></div>
-					<div class="input-label"><div class="input-name">STABILITY GAIN</div>
-						<input type="number" placeholder="10" id="stability-gain" class="input"></div>
 					<div class="input-label"><div class="input-name">LINK TO FLAG</div>
 						<input placeholder="https://create.roblox.com/marketplace/asset/4978980310" id="flag-link" class="input"></div>
+					<div class="input-label" id="modifier-label"><div class="input-name">ATTRIBUTES</div>
+						<button class="input-name" id="attribute-button">+</button></div>
+					<div class="input-label" id="modifier-label"><div class="input-name">MODIFIERS</div>
+						<button class="input-name" id="modifier-button">+</button></div>
 				</div>
 				<div id="output-content">
 					<div id="copy-output"><p id="copy-output-label">Copy to clipboard</p></div>
@@ -52,7 +55,7 @@
 			</div>
 
 			<div id="footer">
-				<a href="https://github.com/3meraldK/ron-formabler" target="_blank" rel="noopener noreferrer">Source code</a> | by 3meraldK
+				<a href="https://github.com/3meraldK/ron-formabler" target="_blank" rel="noopener noreferrer">Source code</a> | by 3meraldK @ 2024
 			</div>
 
 		</div>
