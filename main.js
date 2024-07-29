@@ -1,8 +1,8 @@
 const tab = '&nbsp;&nbsp;&nbsp;&nbsp;';
 
 function isEmpty(input) {
-	if (input.replaceAll(' ', '').length == 0) return true;
-	return false;
+	if (input.replaceAll(' ', '').length == 0) return true
+	return false
 }
 
 function updateOutput() {
@@ -28,11 +28,11 @@ function updateOutput() {
 		canformlist = formListString(canform),
 		requiredlist = formListString(required),
 		tilelist = formListString(tiles),
-		exclusivelist = formListString(exclusive);
+		exclusivelist = formListString(exclusive)
 
 	if (!isEmpty(name) && !isEmpty(canform) && !isEmpty(required) && !isEmpty(buttonName) && !isEmpty(buttonDesc)) {
 
-		const isAlertVisible = (!isEmpty(alertTitle) || !isEmpty(alertDesc) || !isEmpty(alertButton));
+		const isAlertVisible = (!isEmpty(alertTitle) || !isEmpty(alertDesc) || !isEmpty(alertButton))
 
 		let modifiers = ''
 		if (modifierNames.length > 0 && modifierLengths.length > 0) {
@@ -52,7 +52,7 @@ function updateOutput() {
 			attributes += `${tab}}`
 		}
 
-		buttonVisibility('visible');
+		buttonVisibility('visible')
 		output.innerHTML = 
 		`{<br>${tab}FormableName = "${name}",
 		<br>${tab}CountriesCanForm = {${canformlist}},
@@ -70,67 +70,78 @@ function updateOutput() {
 		<br>},${isEmpty(flagLink) ? '' : '<br><br>Link to the flag: ' + flagLink}`
 
 	} else {
-		output.innerHTML = 'Fill in the required labels to proceed (marked with asterisks). Italic labels are optional.';
-		buttonVisibility('hidden');
+		output.innerHTML = 'Fill in the required labels to proceed (marked with asterisks). Italic labels are optional.'
+		buttonVisibility('hidden')
 	}
 
 }
 
 function formListString(input) {
-	let newlist = '';
-	for (const nation of input.split(',')) newlist = `${newlist}, "${nation.trim()}"`;
-	return newlist.replace(', ', '');
+	let newlist = ''
+	for (const nation of input.split(',')) newlist = `${newlist}, "${nation.trim()}"`
+	return newlist.replace(', ', '')
 }
 
 function copyOutput() {
 
 	const output = document.getElementById('output-text'),
 		buttonText = document.getElementById('copy-output-label'),
-		button = document.getElementById('copy-output');
-	if (output.innerHTML.length <= 91) return;
-	navigator.clipboard.writeText(output.innerText);
+		button = document.getElementById('copy-output')
+	if (output.innerHTML.length <= 91) return
+	navigator.clipboard.writeText(output.innerText)
 
-	buttonText.innerText = 'Copied!';
-	button.style.backgroundColor = '#2f423a';
+	buttonText.innerText = 'Copied!'
+	button.style.backgroundColor = '#2f423a'
 	setTimeout(() => {
-		buttonText.innerText = 'Copy to clipboard';
-		button.removeAttribute('style');
-	}, 1000);
+		buttonText.innerText = 'Copy to clipboard'
+		button.removeAttribute('style')
+	}, 1000)
 
 }
 
 function buttonVisibility(state) {
-	document.getElementById('copy-output').style.visibility = state;
+	document.getElementById('copy-output').style.visibility = state
 }
 
 window.onload = function() {
-	updateOutput();
-	document.getElementById('copy-output').onclick = copyOutput;
+	updateOutput()
+	document.getElementById('copy-output').onclick = copyOutput
 }
 
 function addModifier() {
 	document.getElementById('input-content').insertAdjacentHTML('beforeend', '<div class="input-label"><div class="input-name modifier-label">NAME <input class="input modifier-name" placeholder="Popular War Support">LENGTH <input class="input modifier-length" placeholder="365">DO NOT CLEAR <input class="input modifier-donotclear" type="checkbox"><button class="close-modifier">X</button></div></div>')
-	document.querySelectorAll('input').forEach(input => input.oninput = updateOutput);
+	document.querySelectorAll('input').forEach(input => input.oninput = updateOutput)
 	for (const button of document.getElementsByClassName('close-modifier')) {
 		button.addEventListener('click', () => {
-			button.parentElement.parentElement.remove();
-			updateOutput();
+			button.parentElement.parentElement.remove()
+			updateOutput()
 		})
 	}	
 }
 
 function addAttribute() {
 	document.getElementById('input-content').insertAdjacentHTML('beforeend', '<div class="input-label"><div class="input-name modifier-label">NAME <input class="input attribute-name" placeholder="Stability_Gain">VALUE <input class="input attribute-value" placeholder="10"><button class="close-attribute">X</button></div></div>')
-	document.querySelectorAll('input').forEach(input => input.oninput = updateOutput);
+	document.querySelectorAll('input').forEach(input => input.oninput = updateOutput)
 	for (const button of document.getElementsByClassName('close-attribute')) {
 		button.addEventListener('click', () => {
-			button.parentElement.parentElement.remove();
-			updateOutput();
+			button.parentElement.parentElement.remove()
+			updateOutput()
 		})
 	}	
 }
 
-document.querySelectorAll('input').forEach(input => input.oninput = updateOutput);
+function visitNotification() {
+	// Send anonymous notification to the 3meraldK's private Discord server's unused channel (it's probably a temporary solution for testing purposes lol)
+	fetch('https://discord.com/api/webhooks/1267436222549327954/yfsQSHw2zc8EWEplKDKNfOyXqoVQ7WwaoVM9EutH0DE3yOzaQ7re6-0ztfuDJBJsAqmu', 
+		{
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ content: 'Rise of Nations formabler page has been visited.' }),
+		}
+	)
+}
 
+document.querySelectorAll('input').forEach(input => input.oninput = updateOutput)
 document.getElementById('modifier-button').addEventListener('click', () => addModifier())
 document.getElementById('attribute-button').addEventListener('click', () => addAttribute())
+visitNotification()
