@@ -1,12 +1,5 @@
-const tab = '&nbsp;&nbsp;&nbsp;&nbsp;';
-
-function isEmpty(input) {
-	if (input.replaceAll(' ', '').length == 0) return true
-	return false
-}
-
 function updateOutput() {
-	
+	const tab = '&nbsp;&nbsp;&nbsp;&nbsp;'
 	const output = document.getElementById('output-text'),
 		name = document.getElementById('name').value,
 		canform = document.getElementById('canform').value,
@@ -76,6 +69,11 @@ function updateOutput() {
 
 }
 
+function isEmpty(input) {
+	if (input.replaceAll(' ', '').length == 0) return true
+	return false
+}
+
 function formListString(input) {
 	let newlist = ''
 	for (const nation of input.split(',')) newlist = `${newlist}, "${nation.trim()}"`
@@ -103,11 +101,6 @@ function buttonVisibility(state) {
 	document.getElementById('copy-output').style.visibility = state
 }
 
-window.onload = function() {
-	updateOutput()
-	document.getElementById('copy-output').onclick = copyOutput
-}
-
 function addModifier() {
 	document.getElementById('input-content').insertAdjacentHTML('beforeend', '<div class="input-label"><div class="input-name modifier-label">NAME <input class="input modifier-name" placeholder="Popular War Support">LENGTH <input class="input modifier-length" placeholder="365">DO NOT CLEAR <input class="input modifier-donotclear" type="checkbox"><button class="close-modifier">X</button></div></div>')
 	document.querySelectorAll('input').forEach(input => input.oninput = updateOutput)
@@ -130,18 +123,18 @@ function addAttribute() {
 	}	
 }
 
+// Send anonymous webhook to the 3meraldK's private Discord server's unused channel about page's visit
+// earthmc-poland.fly.dev is my back-end middle-man used to hide webhook's url, avoiding its removal by trolls
+// (anyway it's probably a temporary solution for testing purposes lol)
 function visitNotification() {
-	// Send anonymous notification to the 3meraldK's private Discord server's unused channel (it's probably a temporary solution for testing purposes lol)
-	fetch('https://discord.com/api/webhooks/1267436222549327954/yfsQSHw2zc8EWEplKDKNfOyXqoVQ7WwaoVM9EutH0DE3yOzaQ7re6-0ztfuDJBJsAqmu', 
-		{
-			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ content: 'Rise of Nations formabler page has been visited.' }),
-		}
-	)
+	fetch('https://earthmc-poland.fly.dev', { method: 'post', mode: 'no-cors' })
 }
 
-document.querySelectorAll('input').forEach(input => input.oninput = updateOutput)
-document.getElementById('modifier-button').addEventListener('click', () => addModifier())
-document.getElementById('attribute-button').addEventListener('click', () => addAttribute())
-visitNotification()
+window.onload = function() {
+	updateOutput()
+	document.getElementById('copy-output').onclick = copyOutput
+	document.querySelectorAll('input').forEach(input => input.oninput = updateOutput)
+	document.getElementById('modifier-button').addEventListener('click', () => addModifier())
+	document.getElementById('attribute-button').addEventListener('click', () => addAttribute())
+	visitNotification()
+}
