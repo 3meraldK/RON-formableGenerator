@@ -123,8 +123,8 @@ function addAttribute() {
 	}	
 }
 
-// Send anonymous webhook to the 3meraldK's private Discord server's unused channel about page's visit
-// earthmc-poland.fly.dev is my back-end middle-man used to hide webhook's url, avoiding its removal by trolls
+// Send anonymous webhook to 3meraldK's private Discord server about page visit, to know how many people use my generator 
+// earthmc-poland.fly.dev is my personal back-end middle-man used to hide webhook's url, avoiding its removal by trolls
 // (anyway it's probably a temporary solution for testing purposes lol)
 function visitNotification() {
 	fetch('https://earthmc-poland.fly.dev', { method: 'post', mode: 'no-cors' })
